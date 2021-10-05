@@ -83,17 +83,6 @@ std::vector<std::string> Prepass::getRuntimeYul(std::vector<std::string> yul)
 				lines.begin() + i,
 				lines.end());
 			runtimeObj.insert(runtimeObj.begin(), lines[0]);
-			auto deploymentYul = std::vector<std::string>(
-				lines.begin() + 2,
-				lines.begin() + i - 1);
-			deploymentYul.insert(deploymentYul.begin(),
-								 "function __warp_deploy()");
-			std::string yulConstructor;
-			std::for_each(deploymentYul.begin(),
-						  deploymentYul.end(),
-						  [&yulConstructor](std::string line)
-						  { yulConstructor += line + "\n"; });
-			m_yulConstructor = yulConstructor;
 			return runtimeObj;
 		}
 	}
@@ -414,7 +403,6 @@ std::string Prepass::addEntryFunc(std::vector<std::string> entrySeq,
 		if (cleanCode[i + 2].find("data \".metadata\" hex\"")
 			!= std::string::npos)
 		{
-			// yulStr += m_yulConstructor + "\n";
 			yulStr += entryStr + "\n";
 		}
 	}

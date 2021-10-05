@@ -66,7 +66,7 @@ public:
 
 	std::string				 m_mainContract;
 	std::string				 m_currentFunction;
-	std::string 			 m_modifiedContractName;
+	std::string				 m_modifiedContractName;
 	std::string				 m_currentFunctionModified;
 	std::vector<std::string> m_currentFunctionParams;
 	std::string				 m_filepath;

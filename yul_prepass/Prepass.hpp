@@ -20,13 +20,6 @@ struct FinalizedYul
 	int						 entrySeqEnd;
 };
 
-struct YulObjects
-{
-	std::vector<std::string> runtimeYul;
-	std::vector<std::string> deploymentYul;
-};
-
-
 struct Selectors
 {
 	std::vector<std::string> functionNames;
@@ -68,8 +61,6 @@ private:
 
 	std::string				 m_unMarkedSolSource;
 	std::string				 m_markedSolSource;
-	YulObjects				 m_yulObjects;
-	std::string				 m_yulConstructor;
 	std::string				 m_contractPath;
 	std::vector<std::string> m_storageVars;
 	std::vector<std::string> m_solSrcLines_mainContract;

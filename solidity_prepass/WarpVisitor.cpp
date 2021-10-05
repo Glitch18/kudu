@@ -169,14 +169,14 @@ CommandLineInterface SourceData::getCli(char const* sol_filepath)
 
 // void SourceData::endVisit(FunctionDefinition const& _node)
 // {
-	// if (m_currentPass == PassType::AddrTypePass)
-	// {
-	// 	auto pair = std::make_pair(m_currentFunction,
-	// 							   m_currentFunctionModified);
-	// 	this->m_addrMarkedFuncs.emplace_back(pair);
-	// 	this->m_currentFunctionParams.clear();
-	// }
-	// return endVisitNode(_node);
+// if (m_currentPass == PassType::AddrTypePass)
+// {
+// 	auto pair = std::make_pair(m_currentFunction,
+// 							   m_currentFunctionModified);
+// 	this->m_addrMarkedFuncs.emplace_back(pair);
+// 	this->m_currentFunctionParams.clear();
+// }
+// return endVisitNode(_node);
 // }
 
 bool SourceData::visit(FunctionDefinition const& _node)
@@ -307,36 +307,36 @@ SourceData::insideWhichFunction(langutil::SourceLocation const& location)
 
 // bool SourceData::visit(VariableDeclaration const& _node)
 // {
-	// auto type = _node.type()->category();
-	// if (m_currentPass == PassType::AddrTypePass
-	// 	&& type == Type::Category::Address)
-	// {
-	// 	if (boost::ends_with(_node.name(), "_addr_t"))
-	// 		return visitNode(_node);
+// auto type = _node.type()->category();
+// if (m_currentPass == PassType::AddrTypePass
+// 	&& type == Type::Category::Address)
+// {
+// 	if (boost::ends_with(_node.name(), "_addr_t"))
+// 		return visitNode(_node);
 
-	// 	auto newName = _node.name() + "_addr_t";
-	// 	if (_node.isStateVariable())
-	// 	{
-	// 		auto declr = std::string(
-	// 			m_srcOriginal.begin() + _node.location().start,
-	// 			m_srcOriginal.begin() + _node.location().end);
-	// 		auto markedDeclr = declr;
-	// 		replaceIdentifierName(markedDeclr, _node.name(), newName);
-	// 		replaceIdentifierName(m_src, declr, markedDeclr);
-	// 		replaceIdentifierName(m_src, _node.name(), newName);
-	// 		for (auto base: _node.annotation().baseFunctions)
-	// 		{
-	// 			auto newName = base->name() + "_addr_t";
-	// 			auto declr	 = std::string(
-	// 				  m_srcOriginal.begin() + base->location().start,
-	// 				  m_srcOriginal.begin() + base->location().end);
-	// 			auto markedDeclr = declr;
-	// 			replaceIdentifierName(markedDeclr, base->name(), newName);
-	// 			replaceIdentifierName(m_src, declr, markedDeclr);
-	// 		}
-	// 	}
-	// }
-	// return visitNode(_node);
+// 	auto newName = _node.name() + "_addr_t";
+// 	if (_node.isStateVariable())
+// 	{
+// 		auto declr = std::string(
+// 			m_srcOriginal.begin() + _node.location().start,
+// 			m_srcOriginal.begin() + _node.location().end);
+// 		auto markedDeclr = declr;
+// 		replaceIdentifierName(markedDeclr, _node.name(), newName);
+// 		replaceIdentifierName(m_src, declr, markedDeclr);
+// 		replaceIdentifierName(m_src, _node.name(), newName);
+// 		for (auto base: _node.annotation().baseFunctions)
+// 		{
+// 			auto newName = base->name() + "_addr_t";
+// 			auto declr	 = std::string(
+// 				  m_srcOriginal.begin() + base->location().start,
+// 				  m_srcOriginal.begin() + base->location().end);
+// 			auto markedDeclr = declr;
+// 			replaceIdentifierName(markedDeclr, base->name(), newName);
+// 			replaceIdentifierName(m_src, declr, markedDeclr);
+// 		}
+// 	}
+// }
+// return visitNode(_node);
 // }
 
 // bool SourceData::visit(Identifier const& _node)
@@ -532,9 +532,9 @@ void SourceData::prepareSoliditySource(const char* sol_filepath)
 	auto yul = prepass.cleanYul(yulIROptimized, m_mainContract);
 	// std::cout << yul << std::endl;
 	// =============== Generate Yul JSON AST ===============
-	langutil::CharStream ir = langutil::CharStream(yul,
-	m_modifiedSolFilepath); std::variant<phaser::Program,
-	langutil::ErrorList> 	maybeProgram = phaser::Program::load(ir);
+	langutil::CharStream ir = langutil::CharStream(yul, m_modifiedSolFilepath);
+	std::variant<phaser::Program, langutil::ErrorList>
+		maybeProgram = phaser::Program::load(ir);
 
 	if (auto* errorList = std::get_if<langutil::ErrorList>(&maybeProgram))
 	{
